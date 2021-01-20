@@ -9,7 +9,8 @@ def mem() :
 class Graph:
 
     def adjacency(self, node):
-        return self.adjacency_array[self.index[node]:self.index[node]+self.deg[node]]
+        return self.adjacency_array[self.index[node]:self.index[node]+self.deg[node]] # thanks to great implementation of numpy, this is a view and not a copy
+        
     def __init__(self, edges, number_nodes):
         self.nb_nodes = number_nodes
         self.nb_edges = len(edges)
@@ -42,7 +43,9 @@ class Graph:
 if __name__ == "__main__":
     argv = sys.argv[1:]
     assert(len(argv) < 2)
-    estimNbAretes = int((os.popen('wc -l web-BerkStan.txt').read()).split()[0])
+    estimNbAretes = int((os.popen('wc -l '+argv[0]).read()).split()[0]) + 1
+    print(estimNbAretes)
+
     edges = np.zeros((estimNbAretes,2), dtype=np.int32)
     maxIdx = 0
     with open(argv[0], 'r') as f:
@@ -56,4 +59,6 @@ if __name__ == "__main__":
                 edges[count][1]=b
                 maxIdx = max(maxIdx, a, b)
                 count+=1
+    edges = edges[:count]
     G = Graph(edges, count)
+    #del edges
