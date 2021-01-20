@@ -54,7 +54,6 @@ if __name__ == "__main__":
     del l2
     mem()
 
-
 #on peut retourner le nombre de sommets et d'arêtes
     print("n="+str(G.nb_nodes))
     print("m="+str(G.nb_edges))
