@@ -32,13 +32,7 @@ class Graph:
             self.adjacency_array[mutable_index[a]] = b
             self.adjacency_array[mutable_index[b]] = a
             mutable_index[a]+=1
-            mutable_index[b]+=1
-        
-
-
-
-
-        
+            mutable_index[b]+=1      
 
 if __name__ == "__main__":
     argv = sys.argv[1:]
@@ -60,5 +54,5 @@ if __name__ == "__main__":
                 maxIdx = max(maxIdx, a, b)
                 count+=1
     edges = edges[:count]
-    G = Graph(edges, count)
+    G = Graph(edges, maxIdx+1)
     #del edges
